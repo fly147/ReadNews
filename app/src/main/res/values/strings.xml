@@ -7,9 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="menu_login">登录</string>
+    <string name="menu_register">注册</string>
     <string name="menu_home">主页</string>
     <string name="menu_search">搜索新闻</string>
     <string name="menu_userinfo">我的资料</string>
+    <string name="menu_viewpager">看新闻</string>
     <string name="menu_article">我的文章</string>
     <string name="menu_collect">我的收藏</string>
     <string name="item_detail">详情</string>
@@ -25,5 +28,25 @@ I suppose he was leading by example, Jackman said. Areas of poverty and extreme 
     <string name="news_three_desc">Australia in charge of second Test against West Indies in Jamaica</string>
     <string name="news_four_title">Sweden royal wedding</string>
     <string name="news_four_desc">嘿~如果觉得这篇文章对您有帮助，希望你能点个赞，你可以通过订阅微信公众号：ITBird，或新浪微博：明桑Anroid 找到我，记得关注博客哦</string>
+
+    //推荐
+    <string name="news_top_one_title">四川仁寿：抢收小麦 颗粒归仓</string>
+    <string name="news_top_one_desc">眼下，四川省眉山市仁寿县的9.5万亩小麦进入收获季节。当地农机部门抓住晴好天气，组织大型收割机械加紧抢收，确保小麦颗粒归仓。潘帅摄（人民图片网）</string>
+    <string name="news_top_two_title">一座重庆城，嘿多好心人！两江新区上演“连环救援”</string>
+    <string name="news_top_two_desc">华龙网消息，“奚英雄，人好点没有？”“啥子英雄哦，没有刘哥我人都没得了。”4月29日，28岁的奚增朋新添了一个微信好友——刘烜侨。两个原本陌生的年轻人，为何成了朋友？</string>
+    <string name="news_top_three_title">小区纪事｜细致温柔的小区志愿理发师，与邻里间的絮叨和讲究</string>
+    <string name="news_top_three_desc">特殊时期，记住那些居民、那些事。2022年4月28日下午，北蔡一小区内，居民志愿者毛毛（化名）为小区居民理发。毛毛说，理发时，他们常常会聊起家长里短，聊起封控的这些天，也聊起小区里组织的志愿者们……为感谢志愿理发师的付出，居民常常捎些零食、饮料、水果给理发师，这也让毛毛倍感温馨。</string>
+
+    //国内
+    <string name="news_domestic_one_title">果篮子换季！妃子笑荔枝抢鲜登鹭，价格回落再等半月</string>
+    <string name="news_domestic_one_desc">进入5月，气温持续升高，水果市场也迎来“换季”，杨梅、枇杷等夏季水果纷纷上市，丰富市民的“果篮子”。不过，记者走访各大商超、水果店发现，早熟荔枝以其“高身价”，让不少消费者望而却步。业内人士表示，眼下是荔枝的初产期，预计再过半个月，产量提升后，价格将逐渐回落。到了六七月份，本地产荔枝将陆续上市，届时荔枝价格或将进一步降低。</string>
+
+    <string name="news_domestic_two_title">丝路名城亮相天津 文旅援疆再添“一把火”</string>
+    <string name="news_domestic_two_desc">新华网天津5月5日电(周倩)5日，新疆和田·特种旅游目的地文化旅游宣传推介会在天津市成功举办。两地文旅局现场签署文化旅游帮扶框架协议，将针对文化旅游建立结对帮扶机制，进一步深化文旅交流、促进企业务实合作、推动人才培养等具体工作落实落细。</string>
+
+    <string name="news_domestic_three_title">永定河生态补水已进入河北固安 预计5月中旬全线贯通</string>
+    <string name="news_domestic_three_desc">中新网廊坊5月6日电(宋敏涛 郭京泉)6日，永定河生态补水水头进入河北省廊坊市固安县境内。按照水利部批复的最新永定河水量调度计划，官厅水库从5月1日上午开始加大下泄流量，预计5月中旬可实现永定河实施生态补水以来的第二次全线贯通。此次生态补水，对改善廊坊河流生态环境、提升河湖生态功能具有重要意义。</string>
+
+
 
 </resources>

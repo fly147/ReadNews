@@ -1,4 +1,4 @@
-package com.example.readnews.ui.home;
+package com.example.readnews.ui.news;
 
 import java.io.Serializable;
 
@@ -10,9 +10,9 @@ public class News implements Serializable {
     /**
      * Constructs a new instance of {@code Object}.
      */
-    public News(String name, String age, int photoId) {
-        this.title=name;
-        this.desc=age;
+    public News(String title, String desc, int photoId) {
+        this.title=title;
+        this.desc=desc;
         this.photoId=photoId;
     }
 
