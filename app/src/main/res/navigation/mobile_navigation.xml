@@ -36,6 +36,25 @@
         android:name="com.example.readnews.ui.login.RegisterFragment"
         android:label="@string/menu_register"
         tools:layout="@layout/fragment_register" >
-    </fragment>>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="com.example.readnews.ui.article.ArticleFragment"
+        android:label="@string/menu_article"
+        tools:layout="@layout/fragment_article" />
+    <fragment
+        android:id="@+id/nav_add_article"
+        android:name="com.example.readnews.ui.article.AddArticleFragment"
+        android:label="@string/add_article" />
+    <fragment
+        android:id="@+id/nav_article_detail"
+        android:name="com.example.readnews.ui.article.ArticleDetailFragment"
+        android:label="@string/article_detail"
+        tools:layout="@layout/fragment_article_detail" />
+    <fragment
+        android:id="@+id/nav_edit_article"
+        android:name="com.example.readnews.ui.article.EditArticleFragment"
+        android:label="修改文章"
+        tools:layout="@layout/fragment_edit_article" />
 
 </navigation>

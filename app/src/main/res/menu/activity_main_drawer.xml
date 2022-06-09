@@ -20,5 +20,9 @@
             android:id="@+id/nav_search"
             android:icon="@drawable/nav_search"
             android:title="@string/menu_search" />
+        <item
+            android:id="@+id/nav_article"
+            android:icon="@drawable/nav_passage"
+            android:title="@string/menu_article" />
     </group>
 </menu>
