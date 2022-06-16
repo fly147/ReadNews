@@ -16,6 +16,11 @@
     <string name="menu_article">我的文章</string>
     <string name="menu_collect">我的收藏</string>
     <string name="item_detail">详情</string>
+    <string name="edit_article">编辑文章</string>
+    <string name="add_article">添加文章</string>
+    <string name="article_detail">文章详情</string>
+
+
 
 
     <string name="news_one_title">Dallas police HQ attack: Suspect believed killed during standoff</string>
