@@ -56,5 +56,9 @@
         android:name="com.example.readnews.ui.article.EditArticleFragment"
         android:label="修改文章"
         tools:layout="@layout/fragment_edit_article" />
+    <fragment
+        android:id="@+id/nav_news_detail"
+        android:name="com.example.readnews.ui.news.NewsDetailFragment"
+        android:label="新闻详情" />
 
 </navigation>
