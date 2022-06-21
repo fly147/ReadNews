@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -21,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -38,25 +36,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class NewsTopFragment extends Fragment {
+public class NewsFragment extends Fragment {
 
-    private NewsTopViewModel mViewModel;
+    private NewsViewModel mViewModel;
     private SwipeRecyclerView recyclerView;
-    private NewsTopFragment.MyRecycleViewAdapter adapter;
+    private NewsFragment.MyRecycleViewAdapter adapter;
     private List<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
     private List<HashMap<String, Object>> mData = new ArrayList<HashMap<String, Object>>();
     private int pageSize = 10;
     String typeId;
 
 
-    public static NewsTopFragment newInstance() {
-        return new NewsTopFragment();
+    public static NewsFragment newInstance() {
+        return new NewsFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news_top, container, false);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
         Bundle bundle = getArguments();
         typeId = bundle.getString("typeId", "509");
         Log.i("typeId",typeId);
@@ -65,13 +63,15 @@ public class NewsTopFragment extends Fragment {
         recyclerView.getSwipeRefreshLayout()
                 .setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         recyclerView.getRecyclerView().setLayoutManager(new GridLayoutManager(getActivity(), 1));
-        adapter=new NewsTopFragment.MyRecycleViewAdapter();
+        adapter=new NewsFragment.MyRecycleViewAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.setOnLoadListener(new SwipeRecyclerView.OnLoadListener() {
 
             @Override
             public void onRefresh() {
                 Log.i("huhao","OnRefresh");
+                if (getActivity() == null)
+                    return;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -84,6 +84,8 @@ public class NewsTopFragment extends Fragment {
             @Override
             public void onLoadMore() {
                 Log.i("huhao","OnLoadMore");
+                if (getActivity() == null)
+                    return;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -136,30 +138,30 @@ public class NewsTopFragment extends Fragment {
 
     public void fetchRData() {
 //        //往数据库添加数据
-//        String url = new MyApplication().NewsInsertUrl;
-//        RequestParams params = new RequestParams(url);
-//        params.addQueryStringParameter("typeId",typeId);
-//        x.http().get(params, new Callback.CommonCallback<String>() {
-//            @Override
-//            public void onSuccess(String result) {
-//                Log.i("insertNews",result);
-//            }
-//
-//            @Override
-//            public void onError(Throwable ex, boolean isOnCallback) {
-//                Log.i("insertNewsError",ex.toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(CancelledException cex) {
-//
-//            }
-//
-//            @Override
-//            public void onFinished() {
-//
-//            }
-//        });
+        String url = new MyApplication().NewsInsertUrl;
+        RequestParams params = new RequestParams(url);
+        params.addQueryStringParameter("typeId",typeId);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.i("insertNews",result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i("insertNewsError",ex.toString());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
         //查询数据库中数据
         String url2 = new MyApplication().NewsSelectUrl;
         RequestParams params2 = new RequestParams(url2);
@@ -213,12 +215,12 @@ public class NewsTopFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(NewsTopViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         // TODO: Use the ViewModel
     }
 
 
-    class  MyRecycleViewAdapter extends RecyclerView.Adapter<NewsTopFragment.MyRecycleViewAdapter.ViewHolder>
+    class  MyRecycleViewAdapter extends RecyclerView.Adapter<NewsFragment.MyRecycleViewAdapter.ViewHolder>
     {
         public  class ViewHolder extends RecyclerView.ViewHolder {
             public ImageView newsPhoto;
@@ -234,26 +236,21 @@ public class NewsTopFragment extends Fragment {
         }
         @NonNull
         @Override
-        public NewsTopFragment.MyRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public NewsFragment.MyRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View v= LayoutInflater.from(getActivity()).inflate(R.layout.news_item,parent, false);
-            return new NewsTopFragment.MyRecycleViewAdapter.ViewHolder(v);
+            return new NewsFragment.MyRecycleViewAdapter.ViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull NewsTopFragment.MyRecycleViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+        public void onBindViewHolder(@NonNull NewsFragment.MyRecycleViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
             //picture
             Glide.with(getActivity()).load(mData.get(position).get("imgList").toString()).placeholder(R.mipmap.ic_launcher).into(holder.newsPhoto);
             holder.newsTitle.setText((String)mData.get(position).get("title"));
-            Log.i("title",mData.get(position).get("title").toString());
             holder.newsDesc.setText((String)mData.get(position).get("digest"));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-//                    Bundle bundle=new Bundle();
-//                    bundle.putString("newsId",mData.get(position).get("newsId").toString());
                     insertNewsDetail(mData.get(position).get("newsId").toString());
-//                    navController.navigate(R.id.nav_news_detail,bundle);
                 }
             });
         }
@@ -272,10 +269,15 @@ public class NewsTopFragment extends Fragment {
             @Override
             public void onSuccess(String result) {
                 Log.i("insert_newsdetail",result);
-                NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                Bundle bundle=new Bundle();
-                bundle.putString("newsId",newsId);
-                navController.navigate(R.id.nav_news_detail,bundle);
+                if(result.equals("insert failed")){
+                    Log.i("huhao","insert failed");
+                }else{
+                    NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("newsId",newsId);
+                    navController.navigate(R.id.nav_news_detail,bundle);
+                }
+
             }
 
             @Override

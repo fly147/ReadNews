@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.example.readnews.MyApplication;
 import com.example.readnews.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -48,6 +49,7 @@ public class ArticleDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_article_detail, container, false);
         View view = inflater.inflate(R.layout.fragment_article_detail, container, false);
         id = getArguments().getString("id");
         String url = new MyApplication().selectbyidurl;
@@ -64,16 +66,16 @@ public class ArticleDetailFragment extends Fragment {
                         });
                 mData.addAll(list);
 
-                ImageView picture = (ImageView) view.findViewById(R.id.detail_picture);
+                ImageView picture = (ImageView) view.findViewById(R.id.article_image_view);
                 //showpicture
                 Glide.with(getActivity()).load(new MyApplication().imagebaseurl + mData.get(0).get("articleImagePath").toString()).placeholder(R.mipmap.ic_launcher).into(picture);
-                CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
+                CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
                 collapsingToolbar.setTitle(mData.get(0).get("articleTitle").toString());
-                TextView tvarticleTitle = (TextView) view.findViewById(R.id.detail_title);
+                TextView tvarticleTitle = (TextView) view.findViewById(R.id.article_author11);
                 tvarticleTitle.setText(mData.get(0).get("articleTitle").toString());
-                TextView tvarticleContent = (TextView) view.findViewById(R.id.detail_content);
+                TextView tvarticleContent = (TextView) view.findViewById(R.id.article_content_text);
                 tvarticleContent.setText(mData.get(0).get("articleContent").toString());
-                TextView tvarticleTime = view.findViewById(R.id.detail_time);
+                TextView tvarticleTime = view.findViewById(R.id.article_time11);
                 tvarticleTime.setText(mData.get(0).get("articleTime").toString());
             }
 
@@ -92,60 +94,21 @@ public class ArticleDetailFragment extends Fragment {
 
             }
         });
-        Button del_book = (Button) view.findViewById(R.id.del_article);
-        del_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = new MyApplication().deletebyidurl;
-                // String url = "http://172.16.26.242:8080/androidweb/DeleteServlet";
-                RequestParams params = new RequestParams(url);
-                //get
-                params.addQueryStringParameter("id", id);
-                x.http().get(params, new Callback.CommonCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Toast.makeText(getActivity(), "删除数据成功！", Toast.LENGTH_LONG).show();
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-//                        navController.navigate(R.id.nav_home);
-                    }
-
-                    @Override
-                    public void onError(Throwable ex, boolean isOnCallback) {
-                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
-
-                    @Override
-                    public void onCancelled(CancelledException cex) {
-                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
-                    }
-
-                    @Override
-                    public void onFinished() {
-
-                    }
-                });
-
-
-            }
-        });
-        Button edit_article = (Button) view.findViewById(R.id.edit_article);
+        FloatingActionButton edit_article = view.findViewById(R.id.edit_article);
         edit_article.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 Bundle bundle = new Bundle();
                 bundle.putString("id", id);
                 navController.navigate(R.id.nav_edit_article, bundle);
             }
         });
-
-        Button del_article= (Button) view.findViewById(R.id.del_article);
+        FloatingActionButton del_article = view.findViewById(R.id.delete_article);
         del_article.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 String url=new MyApplication().deletebyidurl;
-                // String url = "http://172.16.26.242:8080/androidweb/DeleteServlet";
                 RequestParams params = new RequestParams(url);
                 //get
                 params.addQueryStringParameter("id", id);
@@ -172,10 +135,8 @@ public class ArticleDetailFragment extends Fragment {
                     }
                 });
 
-
             }
         });
-
         return view;
     }
 

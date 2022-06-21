@@ -113,8 +113,6 @@ public class ArticleFragment extends Fragment {
 
                 //mData.clear();
                 mData.addAll(list);
-                System.out.print("mData: ");
-                System.out.println(mData);
                 recyclerView.complete();
                 adapter.notifyDataSetChanged();
             }
@@ -190,15 +188,15 @@ public class ArticleFragment extends Fragment {
 
             public ViewHolder(View convertView) {
                 super(convertView);
-                articlePicture = (ImageView)convertView.findViewById(R.id.article_picture);
-                articleTitle = (TextView)convertView.findViewById(R.id.article_title);
+                articlePicture = (ImageView)convertView.findViewById(R.id.article_image);
+                articleTitle = (TextView)convertView.findViewById(R.id.article_name);
                 articleTime = (TextView)convertView.findViewById(R.id.article_time);
             }
         }
         @NonNull
         @Override
         public MyRecycleViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v= LayoutInflater.from(getActivity()).inflate(R.layout.article_item,parent, false);
+            View v= LayoutInflater.from(getActivity()).inflate(R.layout.item_article,parent, false);
             return new ViewHolder(v);
         }
 
@@ -215,7 +213,6 @@ public class ArticleFragment extends Fragment {
                     Bundle bundle=new Bundle();
                     bundle.putString("id",mData.get(position).get("id").toString());
                     navController.navigate(R.id.nav_article_detail,bundle);
-
                 }
             });
         }
